@@ -18,10 +18,7 @@ public class ServerThread extends Thread{
 			
 			// Do the work and the communication with the client here
 			String[] httpRequestMessage = inFromClient.readLine().split(" ");
-
-			System.out.println("Request message: " + httpRequestMessage);
 			String httpRequestURL = httpRequestMessage[1].substring(1);
-			System.out.println("URL: " + httpRequestURL);
 			byte[] fileData = read("src/lektion2WebServer/" + httpRequestURL);
 
 			outToClient.writeBytes("HTTP/1.1 200 OK\r\n");
@@ -85,6 +82,5 @@ public class ServerThread extends Thread{
 		}
 		return result;
 	}
-
 
 }
