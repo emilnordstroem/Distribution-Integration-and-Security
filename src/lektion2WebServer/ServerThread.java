@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.Socket;
 
 public class ServerThread extends Thread{
-	Socket connSocket;
+	private final Socket connSocket;
 	private static final String baseDirectory = "C:\\Users\\Emil Nordstrøm\\IdeaProjects\\ComputerScience(AP)\\semester_3\\DIS\\LektionsOpgaver\\src\\lektion2WebServer";
 	
 	public ServerThread(Socket connSocket) {
@@ -23,10 +23,10 @@ public class ServerThread extends Thread{
 			String httpRequestURL = httpRequestMessage[1];
 			byte[] fileData = read(baseDirectory + File.separator + httpRequestURL);
 
-			outToClient.writeBytes("HTTP/1.1 200 OK\r\n");
+			outToClient.writeBytes("HTTP/1.1 200 OK\n");
 			outToClient.writeBytes(contentType(httpRequestURL));
-			outToClient.writeBytes("Connection: Close\r\n");
-			outToClient.writeBytes("\r\n");
+			outToClient.writeBytes("Connection: Close\n");
+			outToClient.writeBytes("\n");
 			outToClient.write(fileData, 0, fileData.length);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -37,19 +37,19 @@ public class ServerThread extends Thread{
 	public String contentType(String documentName) {
 		//returns the Content-Type headerline for a given document-name
 		if (documentName.endsWith(".html")){
-			return ("Content-Type: text/html\r\n");
+			return ("Content-Type: text/html\n");
 		} else if (documentName.endsWith(".gif")) {
-			return ("Content-Type: image/gif\r\n");
+			return ("Content-Type: image/gif\n");
 		} else if (documentName.endsWith(".png")) {
-			return ("Content-Type: image/png\r\n");
+			return ("Content-Type: image/png\n");
 		} else if (documentName.endsWith(".jpg")) {
-			return ("Content-Type: image/jpg\r\n");
+			return ("Content-Type: image/jpg\n");
 		} else if (documentName.endsWith(".js")) {
-			return ("Content-Type: text/javascript\r\n");
+			return ("Content-Type: text/javascript\n");
 		} else if (documentName.endsWith(".css")) {
-			return ("Content-Type: text/css\r\n");
+			return ("Content-Type: text/css\n");
 		} else {
-			return ("Content-Type: text/plain\r\n");
+			return ("Content-Type: text/plain\n");
 		}
 	}
 
