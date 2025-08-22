@@ -2,8 +2,10 @@ package lektion2WebServer;
 
 import java.io.*;
 import java.net.Socket;
+
 public class ServerThread extends Thread{
 	Socket connSocket;
+	private static final String baseDirectory = "C:\\Users\\Emil Nordstrøm\\IdeaProjects\\ComputerScience(AP)\\semester_3\\DIS\\LektionsOpgaver\\src\\lektion2WebServer";
 	
 	public ServerThread(Socket connSocket) {
 		this.connSocket = connSocket;
@@ -18,8 +20,8 @@ public class ServerThread extends Thread{
 			
 			// Do the work and the communication with the client here
 			String[] httpRequestMessage = inFromClient.readLine().split(" ");
-			String httpRequestURL = httpRequestMessage[1].substring(1);
-			byte[] fileData = read("src/lektion2WebServer/" + httpRequestURL);
+			String httpRequestURL = httpRequestMessage[1];
+			byte[] fileData = read(baseDirectory + File.separator + httpRequestURL);
 
 			outToClient.writeBytes("HTTP/1.1 200 OK\r\n");
 			outToClient.writeBytes(contentType(httpRequestURL));
