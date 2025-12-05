@@ -1,4 +1,4 @@
-package lektion21MAC;
+package lektion22MAC;
 
 import java.net.ServerSocket;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package lektion21MAC;
+package lektion22MAC;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
