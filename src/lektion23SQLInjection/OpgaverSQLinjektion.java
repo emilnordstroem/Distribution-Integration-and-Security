@@ -24,9 +24,7 @@ public class OpgaverSQLinjektion {
                 String s1 =inLine.readLine();
                 System.out.println("Indtast password");
                 String s2 =inLine.readLine();
-                String s = "select * from brugere where brugerid = '"
-                        + s1 +
-                        "' and passw = '" + s2 + "'";
+                String s = "select * from brugere where brugerid = '" + s1 + "' and passw = '" + s2 + "'";
                 System.out.println(s);
                 ResultSet res=stmt.executeQuery(s);
                 if (res.next()) {
@@ -42,7 +40,7 @@ public class OpgaverSQLinjektion {
             else { // denne del anvendes til delopgave 5
                 System.out.println("Indtast søgestreng");
                 String s3 =inLine.readLine();
-                String s = "select produktnavn,lagerantal,pris from produkt " + "where produktnavn like '" + s3 + "%'";
+                String s = "select produktnavn, lagerantal, pris from produkt where produktnavn like '" + s3 + "%'";
                 System.out.println(s);
                 Statement stmt2 = minConnection.createStatement();
                 ResultSet res2=stmt2.executeQuery(s);
